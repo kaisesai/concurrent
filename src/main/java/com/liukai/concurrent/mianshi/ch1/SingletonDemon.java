@@ -1,4 +1,4 @@
-package com.liukai.concurrent.ch1;
+package com.liukai.concurrent.mianshi.ch1;
 
 /**
  * 单例模式
