@@ -1,18 +1,17 @@
 package com.liukai.concurrent.mianshi.ch1;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
- * 锁的种类
+ * 读写锁
  */
 public class Ch4_lock {
 
   public static void main(String[] args) {
 
-    MyCache myCache = new MyCache();
+    MyCache myCache = new MyCache(new LinkedHashMap<>());
 
     int time = 5;
     // 同步写入数据
@@ -38,20 +37,24 @@ public class Ch4_lock {
    */
   static class MyCache {
 
-    private volatile Map<String, Object> map = new HashMap<>();
+    private volatile Map<String, Object> map;
 
     private ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
+
+    public MyCache(Map<String, Object> map) {
+      this.map = map;
+    }
 
     public void put(String key, Object value) {
       readWriteLock.writeLock().lock();
       try {
 
         System.out.println(Thread.currentThread().getName() + "\t开始执行put\tkey=" + key);
-        try {
-          TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-          e.printStackTrace();
-        }
+        // try {
+        //   TimeUnit.SECONDS.sleep(1);
+        // } catch (InterruptedException e) {
+        //   e.printStackTrace();
+        // }
         map.put(key, value);
         System.out.println(Thread.currentThread().getName() + "\t结束执行put\tkey=" + key);
       } finally {
