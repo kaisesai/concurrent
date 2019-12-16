@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ReentranctLockTest {
+public class ReentrantLockTest {
 
   // 通过trylock来避免死锁
   public boolean transferMoney(Account fromAccount, Account toAccount, int amount, long timeout,
