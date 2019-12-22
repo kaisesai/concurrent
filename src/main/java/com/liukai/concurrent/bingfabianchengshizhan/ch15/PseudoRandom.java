@@ -18,7 +18,7 @@ public abstract class PseudoRandom {
     // 使用线程本地化伪随机数生成器
     // PseudoRandom pseudoRandom = new ThreadLocalPseudoRandom();
     long start = System.currentTimeMillis();
-    int nThread = 50;
+    int nThread = 10;
 
     for (int i = 1; i < nThread; i++) {
       int finalI = i;
